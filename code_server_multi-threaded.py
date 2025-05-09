@@ -19,7 +19,6 @@ class MultiThreadedWebServer:
                 client_connection, client_address = self.server_socket.accept()
                 print(f"Koneksi dari: {client_address}")
                 
-                # Buat thread baru untuk menangani request
                 thread = threading.Thread(
                     target=self.handle_client,
                     args=(client_connection,)
@@ -49,7 +48,6 @@ class MultiThreadedWebServer:
             if path == '/':
                 path = '/index.html'
                 
-            # Security: prevent directory traversal
             if '..' in path or path.startswith('/'):
                 path = path.lstrip('/')
                 if not path:

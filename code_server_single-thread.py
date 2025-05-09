@@ -24,7 +24,6 @@ class SimpleWebServer:
         request = client_connection.recv(1024).decode()
         print(f"Request:\n{request}")
         
-        # Parse request
         headers = request.split('\n')
         if not headers:
             self.send_response(client_connection, 400, "Bad Request")
@@ -35,12 +34,10 @@ class SimpleWebServer:
             self.send_response(client_connection, 501, "Not Implemented")
             return
             
-        # Handle GET request
         if path == '/':
             path = '/index.html'
             
         try:
-            # Security: prevent directory traversal
             if '..' in path or path.startswith('/'):
                 path = path.lstrip('/')
                 if not path:
