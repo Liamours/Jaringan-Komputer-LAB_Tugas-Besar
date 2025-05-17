@@ -28,29 +28,24 @@ def handle_client(connectionSocket):
 
         filename = parts[1]
 
-        # Sanitize filename
         if '\x00' in filename:
             connectionSocket.close()
             return
 
-        # Strip leading slash and prevent directory traversal
         filename = filename.lstrip('/')
         if '..' in filename or filename.startswith('/'):
             connectionSocket.send("HTTP/1.1 403 Forbidden\r\n\r\n".encode())
             connectionSocket.close()
             return
 
-        # Open and read file
         if not os.path.exists(filename):
             raise IOError
 
         with open(filename, encoding='utf-8') as f:
             outputdata = f.read()
 
-        # Send HTTP response header
         connectionSocket.send("HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n".encode())
 
-        # Send file content
         connectionSocket.sendall(outputdata.encode())
 
     except IOError:
@@ -59,7 +54,6 @@ def handle_client(connectionSocket):
     finally:
         connectionSocket.close()
 
-# Main server thread
 SERVER_HOST = '127.0.0.1'
 SERVER_PORT = 1234
 serverSocket = socket(AF_INET, SOCK_STREAM)
