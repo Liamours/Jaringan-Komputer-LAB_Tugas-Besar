@@ -12,6 +12,12 @@ from socket import *
 import threading
 import os
 
+SERVER_HOST = '127.0.0.1'
+SERVER_PORT = 1234
+serverSocket = socket(AF_INET, SOCK_STREAM)
+serverSocket.bind((SERVER_HOST, SERVER_PORT))
+serverSocket.listen(5)
+
 def handle_client(connectionSocket):
     try:
         data = connectionSocket.recv(1024)
@@ -53,12 +59,6 @@ def handle_client(connectionSocket):
         connectionSocket.send("<html><body><h1>404 Not Found</h1></body></html>".encode())
     finally:
         connectionSocket.close()
-
-SERVER_HOST = '127.0.0.1'
-SERVER_PORT = 1234
-serverSocket = socket(AF_INET, SOCK_STREAM)
-serverSocket.bind((SERVER_HOST, SERVER_PORT))
-serverSocket.listen(5)
 
 print("Multithreaded server is ready to serve...")
 

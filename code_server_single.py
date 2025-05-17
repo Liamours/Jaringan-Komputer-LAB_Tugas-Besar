@@ -10,7 +10,7 @@ kembali ke klien.
 from socket import *
 
 SERVER_HOST = '127.0.0.1'
-SERVER_PORT = 1234 
+SERVER_PORT = 4321
 serverSocket = socket(AF_INET, SOCK_STREAM)
 serverSocket.bind((SERVER_HOST, SERVER_PORT))
 serverSocket.listen(1)
@@ -31,8 +31,6 @@ while True:
         for i in range(0, len(outputdata)):
             connectionSocket.send(outputdata[i].encode())
         connectionSocket.send("\r\n".encode())
-
-        connectionSocket.close()
 
     except IOError:
         connectionSocket.send("HTTP/1.1 404 Not Found\r\nContent-Type: text/html\r\n\r\n".encode())
