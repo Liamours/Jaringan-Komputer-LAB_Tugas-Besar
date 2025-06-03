@@ -9,33 +9,32 @@ serverSocket.bind((SERVER_HOST, SERVER_PORT))
 serverSocket.listen(5)
 
 def handle_client(connectionSocket, addr):
-    print("Koneksi baru")
-    
+    print("Terhubung dengan ", addr)
+
     try:
-        while True:  
+        while True:
             message = connectionSocket.recv(1024).decode().strip()
-            if not message or message.lower() == 'exit':
+            if message == 'exit':
                 print("Koneksi client tertutup")
                 break
-                
+
             try:
-                filename = message.split()[1][1:]  
+                filename = message.split()[1][1:]
                 with open(filename, encoding='utf-8') as f:
                     content = f.read()
                 response = "HTTP/1.1 200 OK\r\n\r\n" + content
-                
+
             except FileNotFoundError:
-                response = "HTTP/1.1 404 Not Found\r\n\r\nFile not found"
-            except IndexError:
-                response = "HTTP/1.1 400 Bad Request\r\n\r\nInvalid request"
-                
+                response = "HTTP/1.1 404 Not Found\r\n\r\n"
+
             connectionSocket.send(response.encode())
             
     except Exception as e:
         print(f"Error: {e}")
+
     finally:
         connectionSocket.close()
-        print("Koneksi tertutup\n")
+        print("Koneksi tertutup")
 
 while True:
     connectionSocket, addr = serverSocket.accept()

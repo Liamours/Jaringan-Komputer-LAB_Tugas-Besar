@@ -5,27 +5,44 @@ if len(sys.argv) != 3:
     print("Penggunaan: <client.py> <server_host> <server_port>")
     sys.exit(1)
 
-server_host = sys.argv[1]
-server_port = int(sys.argv[2])
+SERVER_HOST = sys.argv[1]
+SERVER_PORT = int(sys.argv[2])
 
 clientSocket = socket(AF_INET, SOCK_STREAM)
-clientSocket.connect((server_host, server_port))
-print(f"Terhubung dengan {server_host}:{server_port}")
+clientSocket.settimeout(10)
 
-while True:
-    filename = input("Isi nama file (atau 'exit'): ").strip()
-    if not filename:
-        continue
-    if filename.lower() == "exit":
-        break
+try:
+    clientSocket.connect((SERVER_HOST, SERVER_PORT))
+    print("Terhubung dengan Server")
     
-    request = f"GET /{filename} HTTP/1.1\r\nHost: {server_host}\r\n\r\n"
-    clientSocket.send(request.encode())
-    
-    response = clientSocket.recv(4096).decode()
-    print(response)
+    while True:
+        filename = input("Isi nama file (atau 'exit'): ")
 
-clientSocket.close()
+        if not filename:
+            continue
+        if filename == "exit":
+            break
+        
+        request = f"GET /{filename} HTTP/1.0\r\nHost: {SERVER_HOST}\r\n\r\n"
+        clientSocket.send(request.encode())
+
+        response = ""
+        while True:
+            try:
+                chunk = clientSocket.recv(4096).decode()
+                if not chunk:
+                    break
+                response += chunk
+            except timeout:
+                break
+
+        print(response)
+
+except Exception as e:
+    print(f"Error: {e}")
+
+finally:
+    clientSocket.close()
 
 """
 Daripada menggunakan browser, tulislah klien HTTP sendiri untuk menguji server. Klien akan 
