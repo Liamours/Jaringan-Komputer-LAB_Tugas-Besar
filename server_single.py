@@ -1,7 +1,7 @@
 from socket import *
 
 SERVER_HOST = '127.0.0.1'
-SERVER_PORT = 1234
+SERVER_PORT = 4321
 
 serverSocket = socket(AF_INET, SOCK_STREAM)
 serverSocket.bind((SERVER_HOST, SERVER_PORT))
