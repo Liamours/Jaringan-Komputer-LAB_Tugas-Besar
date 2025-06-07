@@ -1,5 +1,13 @@
 <h1 align="center">🌀 Simple HTTP Client-Server in Python</h1>
 
+<p align="center">
+  <img src="https://img.shields.io/badge/-Python-3776AB?style=flat&logo=python&logoColor=white"/>
+  <img src="https://img.shields.io/badge/-Socket%20Programming-003366?style=flat&logo=socket.io&logoColor=white"/>
+  <img src="https://img.shields.io/badge/-HTTP%20Protocol-228B22?style=flat&logo=httpie&logoColor=white"/>
+  <img src="https://img.shields.io/badge/-MultiThreading-6A1B9A?style=flat&logoColor=white"/>
+  <img src="https://img.shields.io/badge/-Client--Server%20Architecture-FF7043?style=flat"/>
+</p>
+
 <div style="background-color:#E3F2FD;padding:15px;border-radius:10px;border-left:5px solid #2196F3;">
   <strong>📌 Deskripsi:</strong><br>
   Proyek ini merupakan implementasi client dan server HTTP sederhana menggunakan socket programming di Python. Aplikasi ini digunakan untuk mengirim request HTTP GET dan menerima response dari server layaknya sebuah browser, namun dijalankan melalui terminal.
@@ -105,8 +113,3 @@ HTTP/1.1 200 OK
 </div>
 
 <br>
-
-<div style="background-color:#F1F8E9;padding:15px;border-radius:10px;border-left:5px solid #8BC34A;">
-  <strong>📚 Lisensi:</strong><br>
-  Proyek ini hanya untuk tujuan pembelajaran.
-</div>
