@@ -1,4 +1,4 @@
-<h1 align="center">🌀 Simple HTTP Client-Server in Python</h1>
+<h1 align="center">HTTP Client-Server Python Socket Programming</h1>
 
 <p align="center">
   <img src="https://img.shields.io/badge/-Python-3776AB?style=flat&logo=python&logoColor=white"/>
