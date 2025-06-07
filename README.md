@@ -15,8 +15,6 @@
 
 <br>
 
-# Jaringan_Komputer_LAB_Tugas_Besar
-
 Tugas besar mata kuliah Lab Jaringan Komputer
 Dibentuk oleh:
 
@@ -80,7 +78,7 @@ Ketik <code>exit</code> untuk mengakhiri koneksi.
     <li><code>client.py</code>: Program client untuk mengirim request HTTP GET.</li>
     <li><code>server_single_thread.py</code>: Server HTTP sederhana, menangani satu koneksi pada satu waktu.</li>
     <li><code>server_multithread.py</code>: Server HTTP multi-threaded, dapat melayani banyak koneksi secara bersamaan.</li>
-    <li>File HTML atau teks lainnya harus berada di direktori yang sama dengan server.</li>
+    <li>File HTML sebagai contoh.</li>
   </ul>
 </div>
 
